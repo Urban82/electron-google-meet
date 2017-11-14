@@ -1,0 +1,62 @@
+[
+	{
+		"label": "Meet", "submenu": [
+			{"role": "about"},
+			{"type": "separator"},
+			{"role": "services", "submenu": []},
+			{"type": "separator"},
+			{"role": "hide"},
+			{"role": "hideothers"},
+			{"role": "unhide"},
+			{"type": "separator"},
+			{"role": "quit"}
+		]
+	}, {
+		"label": "Edit", "submenu": [
+			{"role": "undo"},
+			{"role": "redo"},
+			{"type": "separator"},
+			{"role": "cut"},
+			{"role": "copy"},
+			{"role": "paste"},
+			{"role": "pasteandmatchstyle"},
+			{"role": "delete"},
+			{"role": "selectall"},
+			{"type": "separator"},
+			{"label": "Speech", "submenu": [
+				{"role": "startspeaking"},
+				{"role": "stopspeaking"}
+			]}
+		]
+	}, {
+		"label": "View", "submenu": [
+			{"role": "reload"},
+			{"role": "forcereload"},
+			{"role": "toggledevtools"},
+			{"type": "separator"},
+			{"role": "resetzoom"},
+			{"role": "zoomin"},
+			{"role": "zoomout"},
+			{"type": "separator"},
+			{"role": "togglefullscreen"}
+		]
+	}, {
+		"label": "Control", "submenu": [
+			{"label": "Disable or enable camera", "accelerator": "Command+E", "command": "application:cam"},
+			{"label": "Mute or unmute your microphone", "accelerator": "Command+D", "command": "application:mic"}
+		]
+	}, {
+		"role": "window", "submenu": [
+			{"role": "close"},
+			{"role": "minimize"},
+			{"role": "zoom"},
+			{"type": "separator"},
+			{"role": "front"}
+		]
+	}, {
+		"role": "help", "submenu": [
+			{"label": "Open keyboard shortcut help screen", "accelerator": "Command+/"},
+			{"label": "Learn More", "command": "application:about"}
+		]
+	}
+]

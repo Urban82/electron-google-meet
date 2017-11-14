@@ -1,0 +1,16 @@
+{
+  "name": "Meet",
+  "version": "1.0.0",
+  "description": "Simple Electron application for Google Meet",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "Meet"
+  ],
+  "devDependencies": {
+    "electron": "~1.8.2-beta.2"
+  }
+}
