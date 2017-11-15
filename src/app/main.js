@@ -20,9 +20,9 @@ app.on('ready', function() {
 	});
   
 	//mainWindow.webContents.setWebRTCIPHandlingPolicy('default_public_and_private_interfaces');
-	mainWindow.loadURL('https://meet.google.com/');
 	menu.init(meet);
-	touchbar.init(meet);
+	mainWindow.loadURL('https://meet.google.com/');
+	mainWindow.setTouchBar(touchbar.init(meet));
   
 	mainWindow.on('closed', function () {
     	mainWindow = null;
