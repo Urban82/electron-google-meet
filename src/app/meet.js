@@ -12,6 +12,10 @@ exports.cam = function() {
 	webContents.getFocusedWebContents().send('application-cam-toggle');
 }
 
+exports.muteAll = function() {
+	webContents.getFocusedWebContents().send('application-mute-all');
+}
+
 exports.quit = function() {
 	app.quit();
 }
