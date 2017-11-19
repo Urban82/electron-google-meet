@@ -12,7 +12,9 @@ app.on('ready', function() {
 		height: 800,
 		titleBarStyle: 'hidden',
 	    webPreferences: {
-			preload: __dirname + '/browser.js'
+			preload: __dirname + '/browser.js',
+			nodeIntegration: false,
+			contextIsolation: true
 	    }
 	});
   
