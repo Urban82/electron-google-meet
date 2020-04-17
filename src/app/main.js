@@ -8,13 +8,15 @@ const meet = require('./meet.js');
 let mainWindow = null;
 let tray = null;
 
-app.on('ready', () => {
-    if (app.commandLine.hasSwitch('help')) {
-        console.log("Usage:");
-        console.log("  --disable-tray  - Disable the tray bar icon");
-        app.quit();
-    }
+if (app.commandLine.hasSwitch('help')) {
+    console.log("Usage:");
+    console.log("  --room-id=<id>  - Connect to the given room")
+    console.log("  --disable-tray  - Disable the tray bar icon");
+    console.log("  --help          - Show this help");
+    process.exit(0);
+}
 
+app.on('ready', () => {
     let icon = path.join(__dirname, 'icons/meet.png');
     if (process.platform == "win32") {
         icon = path.join(__dirname, 'icons/meet.ico');
@@ -32,8 +34,13 @@ app.on('ready', () => {
         }
     });
 
+    let url = 'https://meet.google.com/';
+    if (app.commandLine.hasSwitch('room-id')) {
+        url = 'https://meet.google.com/' + app.commandLine.getSwitchValue('room-id')
+    }
+
     menu.init(meet);
-    mainWindow.loadURL('https://meet.google.com/');
+    mainWindow.loadURL(url);
     mainWindow.setTouchBar(touchbar.init(meet));
 
     mainWindow.on('closed', () => {
