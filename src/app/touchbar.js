@@ -1,4 +1,4 @@
-const {Menu, ipcMain, TouchBar, nativeImage} = require('electron');
+const {ipcMain, TouchBar, nativeImage} = require('electron');
 const {TouchBarSpacer, TouchBarButton} = TouchBar;
 
 function getColor(isMuted) {

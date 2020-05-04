@@ -1,12 +1,12 @@
-const {app, BrowserWindow, Tray, Menu, shell} = require('electron');
+const {app, BrowserWindow, shell} = require('electron');
 const path = require('path')
 
 const menu = require('./menu.js');
 const touchbar = require('./touchbar.js');
+const tray = require('./tray.js');
 const meet = require('./meet.js');
 
 let mainWindow = null;
-let tray = null;
 
 if (app.commandLine.hasSwitch('help')) {
     console.log("Usage:");
@@ -17,13 +17,8 @@ if (app.commandLine.hasSwitch('help')) {
 }
 
 app.on('ready', () => {
-    let icon = path.join(__dirname, 'icons/meet.png');
-    if (process.platform == "win32") {
-        icon = path.join(__dirname, 'icons/meet.ico');
-    }
-
     mainWindow = new BrowserWindow({
-        icon: icon,
+        icon: tray.getIcon(false),
         width: 1280,
         height: 800,
         titleBarStyle: 'hidden',
@@ -61,26 +56,16 @@ app.on('ready', () => {
             mainWindow.hide()
         })
 
-        tray = new Tray(icon);
-        tray.setTitle('Google Meet')
-        tray.setToolTip('Google Meet');
-        tray.on('click', toggleWindow);
-        tray.on('double-click', toggleWindow);
-        const contextMenu = Menu.buildFromTemplate([
-            {label: "Disable or enable camera", click: () => { meet.cam(); }},
-            {label: "Mute or unmute your microphone", click: () => { meet.mic(); }},
-            {type: "separator"},
-            {role: "quit"}, // "role": system prepared action menu
-        ]);
-        tray.setContextMenu(contextMenu)
+        tray.init(
+            meet,
+            () => {
+                if (mainWindow.isVisible()) {
+                    mainWindow.hide()
+                } else {
+                    mainWindow.show()
+                    mainWindow.focus()
+                }
+            }
+        );
     }
 });
-
-const toggleWindow = () => {
-    if (mainWindow.isVisible()) {
-        mainWindow.hide()
-    } else {
-        mainWindow.show()
-        mainWindow.focus()
-    }
-}
