@@ -1,4 +1,4 @@
-const {app, BrowserWindow, Tray, Menu} = require('electron');
+const {app, BrowserWindow, Tray, Menu, shell} = require('electron');
 const path = require('path')
 
 const menu = require('./menu.js');
@@ -47,6 +47,12 @@ app.on('ready', () => {
         mainWindow = null;
         app.quit();
     });
+
+    mainWindow.webContents.on('new-window', function(event, url, frameName, disposition, options) {
+        event.preventDefault();
+        shell.openExternal(url);
+    });
+
 
     if (!app.commandLine.hasSwitch('disable-tray')) {
         // Minimize window to system tray
