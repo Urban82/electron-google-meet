@@ -1,4 +1,4 @@
-const {Tray, Menu} = require('electron');
+const {ipcMain, Tray, Menu} = require('electron');
 const path = require('path')
 
 function getIcon(isMuted) {
@@ -28,6 +28,10 @@ exports.init = function(meet, toggleWindow) {
         {role: "quit"}, // "role": system prepared action menu
     ]);
     tray.setContextMenu(contextMenu);
+
+    ipcMain.on('application-mic-change', (event, arg) => {
+        tray.setImage(getIcon(arg));
+    });
 
     return tray;
 }
