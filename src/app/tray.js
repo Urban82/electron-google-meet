@@ -14,7 +14,6 @@ function getIcon(isMuted) {
 }
 
 exports.init = function(meet, toggleWindow) {
-    console.log(getIcon(false));
     tray = new Tray(getIcon(false));
 
     tray.setTitle('Google Meet');
