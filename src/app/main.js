@@ -50,12 +50,6 @@ app.on('ready', () => {
 
 
     if (!app.commandLine.hasSwitch('disable-tray')) {
-        // Minimize window to system tray
-        mainWindow.on('minimize',function(event){
-            event.preventDefault()
-            mainWindow.hide()
-        })
-
         tray.init(
             meet,
             () => {
