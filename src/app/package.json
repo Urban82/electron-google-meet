@@ -14,7 +14,7 @@
     "Meet"
   ],
   "devDependencies": {
-    "electron": "~8.2.2"
+    "electron": "~8.2.4"
   },
   "dependencies": {
     "electron-packager": "^14.2.1"
